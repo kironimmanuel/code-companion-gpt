@@ -6,7 +6,6 @@ export * from './dropdown-menu';
 export * from './input';
 export * from './loading-spinner';
 export * from './logo';
-export * from './modal';
 export * from './navigation-links';
 export * from './pagination';
 export * from './profile';

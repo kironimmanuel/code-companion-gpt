@@ -122,7 +122,13 @@ export const DataTable = <TData, TValue>({ columns, data, withRouting }: DataTab
                                         className='cursor-pointer'>
                                         {row.getVisibleCells().map(cell => {
                                             return (
-                                                <TableCell key={cell.id}>
+                                                <TableCell
+                                                    key={cell.id}
+                                                    onClick={e => {
+                                                        if (cell.column.id === 'actions') {
+                                                            e.stopPropagation();
+                                                        }
+                                                    }}>
                                                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
                                                 </TableCell>
                                             );

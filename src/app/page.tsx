@@ -1,9 +1,17 @@
 import { buttonVariants } from '@/src/components/ui/button';
+import { auth } from '@clerk/nextjs';
 import Image from 'next/image';
 import Link from 'next/link';
+import { redirect } from 'next/navigation';
 import { Heading, Logo, Paragraph } from '../components';
 
 export default function HomePage() {
+    const { userId } = auth();
+
+    if (userId) {
+        redirect('/chat');
+    }
+
     return (
         <main className='container relative min-h-screen flex-col items-center justify-center grid lg:max-w-none lg:grid-cols-2 lg:px-0'>
             <div className='lg:hidden'>

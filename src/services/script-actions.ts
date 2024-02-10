@@ -44,7 +44,6 @@ export const getScriptById = async (id: string) => {
             },
         });
     } catch (error) {
-        toast.error(errorMessages.SCRIPT_NOT_FOUND.message);
         throw error;
     }
 };
@@ -63,7 +62,6 @@ export const getExistingScript = async ({
             },
         });
     } catch (error) {
-        toast.error(errorMessages.SCRIPT_EXISTS.message);
         throw error;
     }
 };
@@ -74,7 +72,6 @@ export const createNewScript = async (script: any) => {
             data: script,
         });
     } catch (error) {
-        toast.error(errorMessages.SCRIPT_EXISTS.message);
         throw error;
     }
 };
@@ -87,7 +84,6 @@ export const deleteScriptById = async (id: string) => {
             },
         });
     } catch (error) {
-        toast.error(errorMessages.SCRIPT_NOT_FOUND.message);
         throw error;
     }
 };

@@ -1,4 +1,4 @@
-import { Button } from '@/src/components/ui/button';
+import { Button, buttonVariants } from '@/src/components/ui/button';
 import {
     DropdownMenu,
     DropdownMenuContent,
@@ -13,6 +13,16 @@ import { shortenString } from '@/src/utils/helpers';
 import { ColumnDef } from '@tanstack/react-table';
 import { ArrowUpDown, MoreHorizontal } from 'lucide-react';
 import { toast } from 'react-toastify';
+import {
+    Dialog,
+    DialogClose,
+    DialogContent,
+    DialogDescription,
+    DialogFooter,
+    DialogHeader,
+    DialogTitle,
+    DialogTrigger,
+} from '../..';
 
 type ColumnsFunction = (deleteScriptByIdAndRefetch: (scriptId: string) => void) => ColumnDef<ScriptDTO>[];
 
@@ -79,34 +89,43 @@ export const columns: ColumnsFunction = deleteScriptByIdAndRefetch => [
             const script = row.original;
 
             return (
-                <DropdownMenu>
-                    <DropdownMenuTrigger asChild>
-                        <Button variant='ghost' className='h-8 w-8 p-0'>
-                            <span className='sr-only'>Open menu</span>
-                            <MoreHorizontal className='h-4 w-4' />
-                        </Button>
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent align='end'>
-                        <DropdownMenuLabel>Actions</DropdownMenuLabel>
-                        <DropdownMenuSeparator />
-                        <DropdownMenuItem
-                            onClick={e => {
-                                e.stopPropagation();
-                                navigator.clipboard.writeText(script.codeSnippet);
-                                toast.success(successMessages.CODE_SNIPPET_COPIED.message);
-                            }}>
-                            Copy Codesnippet
-                        </DropdownMenuItem>
-                        <DropdownMenuItem
-                            onClick={e => {
-                                e.stopPropagation();
-                                deleteScriptByIdAndRefetch(script.id);
-                                toast.success(successMessages.SCRIPT_DELETED.message);
-                            }}>
-                            Delete
-                        </DropdownMenuItem>
-                    </DropdownMenuContent>
-                </DropdownMenu>
+                <Dialog>
+                    <DropdownMenu>
+                        <DropdownMenuTrigger asChild>
+                            <Button variant='ghost' className='h-8 w-8 p-0'>
+                                <span className='sr-only'>Open menu</span>
+                                <MoreHorizontal className='h-4 w-4' />
+                            </Button>
+                        </DropdownMenuTrigger>
+                        <DropdownMenuContent align='end'>
+                            <DropdownMenuLabel>Actions</DropdownMenuLabel>
+                            <DropdownMenuSeparator />
+                            <DropdownMenuItem
+                                onClick={() => {
+                                    navigator.clipboard.writeText(script.codeSnippet);
+                                    toast.success(successMessages.CODE_SNIPPET_COPIED.message);
+                                }}>
+                                Copy Codesnippet
+                            </DropdownMenuItem>
+                            <DialogTrigger asChild>
+                                <DropdownMenuItem>Delete</DropdownMenuItem>
+                            </DialogTrigger>
+                        </DropdownMenuContent>
+                    </DropdownMenu>
+
+                    <DialogContent>
+                        <DialogHeader>
+                            <DialogTitle>Are you sure you want to delete this script?</DialogTitle>
+                            <DialogDescription>This action cannot be undone.</DialogDescription>
+                        </DialogHeader>
+                        <DialogFooter>
+                            <DialogClose className={buttonVariants({ variant: 'outline' })}>Cancel</DialogClose>
+                            <Button variant='destructive' onClick={() => deleteScriptByIdAndRefetch(script.id)}>
+                                Delete
+                            </Button>
+                        </DialogFooter>
+                    </DialogContent>
+                </Dialog>
             );
         },
     },
