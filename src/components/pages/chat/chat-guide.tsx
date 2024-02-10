@@ -15,8 +15,8 @@ export const ChatGuide = ({ handlePromptSuggestion }: Props) => {
                         Welcome to your <strong>Code Companion</strong> AI Chatbot!
                     </CardTitle>
                     <CardDescription className='text-lg'>
-                        This is an open-source AI chatbot app template built with Next.js, the Vercel AI SDK, and Vercel
-                        KV. You can start a conversation here or try the following examples:
+                        This is an open-source AI chatbot app template built with Next.js and the OpenAI API. To get
+                        started just type your own prompt or click on any of the suggestions below:
                     </CardDescription>
                 </CardHeader>
                 <CardContent className='flex flex-col items-start'>
