@@ -1,7 +1,5 @@
 'use server';
-import { toast } from 'react-toastify';
 import prisma from '../config/db';
-import { errorMessages } from '../constants/messages';
 
 export const getAllScripts = async (searchTerm?: string) => {
     if (!searchTerm) {

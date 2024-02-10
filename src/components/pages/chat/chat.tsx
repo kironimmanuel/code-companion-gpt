@@ -36,7 +36,11 @@ export const Chat = () => {
                         if (message) {
                             const { role, content } = message;
                             return (
-                                <ChatMessage key={index} role={role as Role.USER | Role.ASSISTANT} content={content} />
+                                <ChatMessage
+                                    key={index}
+                                    role={role as Role.USER | Role.ASSISTANT}
+                                    content={content as string}
+                                />
                             );
                         }
                     })}
