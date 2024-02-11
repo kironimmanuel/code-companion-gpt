@@ -1,14 +1,21 @@
 'use client';
 
-import { Button } from '@/src/components/ui/button';
 import {
+    Button,
     DropdownMenu,
     DropdownMenuCheckboxItem,
     DropdownMenuContent,
+    DropdownMenuLabel,
+    DropdownMenuSeparator,
     DropdownMenuTrigger,
-} from '@/src/components/ui/dropdown-menu';
-import { Input } from '@/src/components/ui/input';
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/src/components/ui/table';
+    Input,
+    Table,
+    TableBody,
+    TableCell,
+    TableHead,
+    TableHeader,
+    TableRow,
+} from '@/src/components';
 import { ScriptDTO } from '@/src/models/ScriptDTO';
 import { splitAtCapitalLetters } from '@/src/utils/helpers';
 import {
@@ -25,6 +32,7 @@ import {
 } from '@tanstack/react-table';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
+import { LuSettings2 } from 'react-icons/lu';
 
 interface DataTableProps<TData, TValue> {
     columns: ColumnDef<TData, TValue>[];
@@ -70,11 +78,13 @@ export const DataTable = <TData, TValue>({ columns, data, withRouting }: DataTab
                 </div>
                 <DropdownMenu>
                     <DropdownMenuTrigger asChild>
-                        <Button variant='outline' className='ml-auto'>
-                            Columns
+                        <Button variant='outline' className='ml-auto flex gap-2'>
+                            <LuSettings2 /> View
                         </Button>
                     </DropdownMenuTrigger>
                     <DropdownMenuContent align='end'>
+                        <DropdownMenuLabel className='capitalize'>Toggle Columns</DropdownMenuLabel>
+                        <DropdownMenuSeparator />
                         {table
                             .getAllColumns()
                             .filter(column => !(column.id === 'actions') && column.getCanHide())
