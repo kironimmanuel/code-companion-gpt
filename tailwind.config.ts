@@ -88,7 +88,7 @@ const config = {
         },
     },
     daisyui: {
-        themes: ['cmyk', 'night'],
+        themes: ['wireframe', 'black'],
     },
     plugins: [require('tailwindcss-animate'), require('@tailwindcss/typography'), require('daisyui')],
 } satisfies Config;

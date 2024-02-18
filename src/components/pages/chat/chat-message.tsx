@@ -3,7 +3,7 @@
 import { Role } from '@/src/types';
 import { UserButton } from '@clerk/nextjs';
 import { memo, useEffect, useRef, useState } from 'react';
-import { FcElectronics } from 'react-icons/fc';
+import { IoTerminal } from 'react-icons/io5';
 import { Paragraph } from '../..';
 
 interface Props {
@@ -16,7 +16,7 @@ export const ChatMessage = memo(({ role, content }: Props) => {
     const animationRef = useRef<NodeJS.Timeout | null>(null);
 
     const isUser = role === Role.USER;
-    const avatar = isUser ? <UserButton /> : <FcElectronics />;
+    const avatar = isUser ? <UserButton /> : <IoTerminal />;
     const displayName = isUser ? 'You' : 'Code Companion GPT-3.5';
 
     useEffect(() => {
@@ -46,11 +46,13 @@ export const ChatMessage = memo(({ role, content }: Props) => {
     }, [content, isUser]);
 
     return (
-        <div className='flex py-4 px-8 gap-3'>
-            <figure className='rounded-sm w-12 h-12 text-4xl flex-shrink-0'>{avatar}</figure>
+        <div className='flex py-4 lg:px-8 gap-3'>
+            <figure className='rounded-sm w-12 h-12 text-3xl flex-shrink-0'>{avatar}</figure>
             <div>
                 <Paragraph className='font-extrabold'>{displayName}</Paragraph>
-                <Paragraph className='max-w-3xl opacity-90'>{isUser ? content : displayedContent}</Paragraph>
+                <Paragraph className='max-w-3xl opacity-90' size='sm'>
+                    {isUser ? content : displayedContent}
+                </Paragraph>
             </div>
         </div>
     );

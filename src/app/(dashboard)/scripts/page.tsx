@@ -12,7 +12,9 @@ export default async function ScriptsPage() {
 
     return (
         <HydrationBoundary state={dehydrate(queryClient)}>
-            <AllScripts />
+            <section className='max-w-[1280px] mx-auto p-5 lg:p-12'>
+                <AllScripts />
+            </section>
         </HydrationBoundary>
     );
 }

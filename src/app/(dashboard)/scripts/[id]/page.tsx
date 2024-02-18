@@ -18,11 +18,11 @@ export default async function SingleScriptPage({ params }: Props) {
     }
 
     return (
-        <div>
+        <section className='max-w-[1280px] mx-auto p-5 lg:p-12'>
             <Link href='/scripts' className={`${buttonVariants({ variant: 'outline' })} mb-12`}>
                 Back to scripts
             </Link>
             {script && <ScriptInfo {...script} />}
-        </div>
+        </section>
     );
 }
