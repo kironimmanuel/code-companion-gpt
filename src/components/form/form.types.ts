@@ -44,6 +44,7 @@ export interface FormSelectProps extends SelectProps, BaseProps {
 type ButtonProps = React.ComponentProps<'button'>;
 export interface FormButtonProps extends ButtonProps, BaseProps {
     children: ReactNode;
+    ref?: React.RefObject<HTMLButtonElement>;
 }
 
 type ButtonContainerProps = React.ComponentProps<'div'>;

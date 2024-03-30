@@ -1,11 +1,12 @@
 interface ParagraphProps extends React.HTMLAttributes<HTMLParagraphElement> {
     children: React.ReactNode;
-    size?: 'sm' | 'md' | 'lg' | 'xl';
+    size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
     className?: string;
 }
 
 export const Paragraph = ({ children, size = 'md', className, ...props }: ParagraphProps) => {
     const sizeClass = {
+        xs: 'text-xs',
         sm: 'text-sm',
         md: 'text-md',
         lg: 'text-lg',

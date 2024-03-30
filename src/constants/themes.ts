@@ -1,4 +1,4 @@
 export enum Theme {
-    Light = 'cmyk',
-    Dark = 'night',
+    Light = 'wireframe',
+    Dark = 'black',
 }

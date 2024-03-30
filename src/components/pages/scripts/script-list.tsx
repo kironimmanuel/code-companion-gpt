@@ -20,7 +20,7 @@ export const AllScripts = () => {
     };
 
     return (
-        <>
+        <div className='pb-12 lg:pb-0'>
             {isPending && (
                 <div className='w-full items-center justify-center flex h-[80vh] lg:h-[50vh]'>
                     <LoadingSpinner />
@@ -29,6 +29,6 @@ export const AllScripts = () => {
             {!isPending && (
                 <DataTable columns={columns(deleteScriptByIdAndRefetch)} data={allScripts || []} withRouting />
             )}
-        </>
+        </div>
     );
 };

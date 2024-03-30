@@ -1,20 +1,16 @@
-import { Badge } from '@/src/components';
-import { getUserTokensByUserId } from '@/src/services/token-actions';
-import { UserProfile, auth } from '@clerk/nextjs';
+'use client';
 
-export default async function ProfilePage() {
-    const { userId } = auth();
+import { UserProfile } from '@/src/components';
+import { HydrationBoundary, QueryClient, dehydrate } from '@tanstack/react-query';
 
-    const tokens = userId && (await getUserTokensByUserId(userId));
+export default function ProfilePage() {
+    const queryClient = new QueryClient();
 
     return (
-        <div>
-            <div className='mb-8'>
-                <Badge variant='secondary' className='ml-8 text-lg p-2 px-5'>
-                    Current token amount: <strong>{tokens ?? 0}</strong>
-                </Badge>
-            </div>
-            <UserProfile />
-        </div>
+        <HydrationBoundary state={dehydrate(queryClient)}>
+            <section className='max-w-[1280px] mx-auto p-5 lg:p-12'>
+                <UserProfile />
+            </section>
+        </HydrationBoundary>
     );
 }

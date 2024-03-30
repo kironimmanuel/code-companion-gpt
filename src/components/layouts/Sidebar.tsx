@@ -1,19 +1,84 @@
-import { navLinks } from '@/src/constants/nav-links';
-import { Logo } from '..';
-import { NavigationLinks, Signout } from '../ui';
+'use client';
+import Link from 'next/link';
+import {
+    Logo,
+    NavigationMenu,
+    NavigationMenuItem,
+    NavigationMenuLink,
+    NavigationMenuList,
+    Sheet,
+    SheetClose,
+    SheetContent,
+    SheetHeader,
+    SheetTitle,
+    SheetTrigger,
+    SidebarToggle,
+    ThemeToggle,
+    navigationMenuTriggerStyle,
+} from '..';
 
-export default function Sidebar() {
+export const Sidebar = () => {
     return (
-        <div className='px-4 w-80 min-h-full bg-base-200 py-12 grid grid-rows-[auto,1fr,auto] relative'>
-            <div className='flex items-center mb-4 gap-4 px-4'>
-                <Logo />
-            </div>
-            <ul className='menu'>
-                {navLinks.map(navLink => {
-                    return <NavigationLinks key={navLink.href} {...navLink} />;
-                })}
-                <Signout />
-            </ul>
-        </div>
+        <Sheet>
+            <SheetTrigger>
+                <SidebarToggle />
+            </SheetTrigger>
+            <SheetContent side='left' className='flex flex-col items-start'>
+                <SheetHeader>
+                    <SheetTitle>
+                        <Logo />
+                    </SheetTitle>
+                </SheetHeader>
+
+                <NavigationMenu orientation='vertical' className='flex flex-col justify-start'>
+                    <NavigationMenuList className='flex flex-col items-start gap-2'>
+                        <NavigationMenuItem>
+                            <Link href='/chat' legacyBehavior passHref>
+                                <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                                    <SheetClose>Chat</SheetClose>
+                                </NavigationMenuLink>
+                            </Link>
+                        </NavigationMenuItem>
+                        <NavigationMenuItem>
+                            <Link href='/chat/history' legacyBehavior passHref>
+                                <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                                    <SheetClose>Chat History</SheetClose>
+                                </NavigationMenuLink>
+                            </Link>
+                        </NavigationMenuItem>
+                        <NavigationMenuItem>
+                            <Link href='/scripts' legacyBehavior passHref>
+                                <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                                    <SheetClose>All Scripts</SheetClose>
+                                </NavigationMenuLink>
+                            </Link>
+                        </NavigationMenuItem>
+                        <NavigationMenuItem>
+                            <Link href='/scripts/new-script' legacyBehavior passHref>
+                                <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                                    <SheetClose>New Script</SheetClose>
+                                </NavigationMenuLink>
+                            </Link>
+                        </NavigationMenuItem>
+                        <NavigationMenuItem>
+                            <Link href='/profile' legacyBehavior passHref>
+                                <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                                    Profile
+                                    <SheetClose>Profile</SheetClose>
+                                </NavigationMenuLink>
+                            </Link>
+                        </NavigationMenuItem>
+                        <NavigationMenuItem>
+                            <Link href='/help' legacyBehavior passHref>
+                                <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                                    <SheetClose>Help</SheetClose>
+                                </NavigationMenuLink>
+                            </Link>
+                        </NavigationMenuItem>
+                    </NavigationMenuList>
+                </NavigationMenu>
+                <ThemeToggle />
+            </SheetContent>
+        </Sheet>
     );
-}
+};
